@@ -1,0 +1,626 @@
+basePath: /api/v1
+definitions:
+  controllers.Patient:
+    properties:
+      gender:
+        type: integer
+      hn:
+        type: string
+      patientName:
+        type: string
+      rightoftreatment:
+        type: integer
+      systemmember:
+        type: integer
+    type: object
+  ent.Gender:
+    properties:
+      edges:
+        $ref: '#/definitions/ent.GenderEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the GenderQuery when eager-loading is set.
+        type: object
+      genderName:
+        description: GenderName holds the value of the "genderName" field.
+        type: string
+      id:
+        description: ID of the ent.
+        type: integer
+    type: object
+  ent.GenderEdges:
+    properties:
+      patients:
+        description: Patients holds the value of the patients edge.
+        items:
+          $ref: '#/definitions/ent.Patient'
+        type: array
+    type: object
+  ent.Patient:
+    properties:
+      edges:
+        $ref: '#/definitions/ent.PatientEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the PatientQuery when eager-loading is set.
+        type: object
+      gender:
+        type: integer
+      hn:
+        description: Hn holds the value of the "hn" field.
+        type: string
+      id:
+        description: ID of the ent.
+        type: integer
+      patientName:
+        description: PatientName holds the value of the "patientName" field.
+        type: string
+      rightoftreatment:
+        type: integer
+      systemmember:
+        type: integer
+    type: object
+  ent.PatientEdges:
+    properties:
+      gender:
+        $ref: '#/definitions/ent.Gender'
+        description: Gender holds the value of the gender edge.
+        type: object
+      rightoftreatment:
+        $ref: '#/definitions/ent.Rightoftreatment'
+        description: Rightoftreatment holds the value of the rightoftreatment edge.
+        type: object
+      systemmember:
+        $ref: '#/definitions/ent.Systemmember'
+        description: Systemmember holds the value of the systemmember edge.
+        type: object
+    type: object
+  ent.Rightoftreatment:
+    properties:
+      edges:
+        $ref: '#/definitions/ent.RightoftreatmentEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the RightoftreatmentQuery when eager-loading is set.
+        type: object
+      id:
+        description: ID of the ent.
+        type: integer
+      rightoftreatmentName:
+        description: RightoftreatmentName holds the value of the "rightoftreatmentName" field.
+        type: string
+    type: object
+  ent.RightoftreatmentEdges:
+    properties:
+      patients:
+        description: Patients holds the value of the patients edge.
+        items:
+          $ref: '#/definitions/ent.Patient'
+        type: array
+    type: object
+  ent.Systemmember:
+    properties:
+      Password:
+        description: Password holds the value of the "Password" field.
+        type: string
+      edges:
+        $ref: '#/definitions/ent.SystemmemberEdges'
+        description: |-
+          Edges holds the relations/edges for other nodes in the graph.
+          The values are being populated by the SystemmemberQuery when eager-loading is set.
+        type: object
+      id:
+        description: ID of the ent.
+        type: integer
+      systemmemberName:
+        description: SystemmemberName holds the value of the "systemmemberName" field.
+        type: string
+    type: object
+  ent.SystemmemberEdges:
+    properties:
+      patients:
+        description: Patients holds the value of the patients edge.
+        items:
+          $ref: '#/definitions/ent.Patient'
+        type: array
+    type: object
+  gin.H:
+    additionalProperties: true
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server for SUT SE 2563
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: SUT SA Example API
+  version: "1.0"
+paths:
+  /gender/{id}:
+    delete:
+      description: get gender by ID
+      operationId: delete-gender
+      parameters:
+      - description: Gender ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Delete a gender entity by ID
+  /genders:
+    get:
+      description: list gender entities
+      operationId: list-gender
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Gender'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: List gender entities
+    post:
+      consumes:
+      - application/json
+      description: Create gender
+      operationId: create-gender
+      parameters:
+      - description: Gender entity
+        in: body
+        name: gender
+        required: true
+        schema:
+          $ref: '#/definitions/ent.Gender'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Gender'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Create gender
+  /genders/{id}:
+    get:
+      description: get gender by ID
+      operationId: get-gender
+      parameters:
+      - description: Gender ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Gender'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Get a gender entity by ID
+  /patients:
+    get:
+      description: list patient entities
+      operationId: list-patient
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Patient'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: List patient entities
+    post:
+      consumes:
+      - application/json
+      description: Create patient
+      operationId: create-patient
+      parameters:
+      - description: Patient entity
+        in: body
+        name: patient
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.Patient'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.Patient'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Create patient
+  /patients/{id}:
+    delete:
+      description: get patient by ID
+      operationId: delete-patient
+      parameters:
+      - description: Patient ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Delete a patient entity by ID
+  /rightoftreatment/{id}:
+    delete:
+      description: get rightoftreatment by ID
+      operationId: delete-rightoftreatment
+      parameters:
+      - description: Rightoftreatment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Delete a rightoftreatment entity by ID
+  /rightoftreatments:
+    get:
+      description: list rightoftreatment entities
+      operationId: list-rightoftreatment
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Rightoftreatment'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: List rightoftreatment entities
+    post:
+      consumes:
+      - application/json
+      description: Create rightoftreatment
+      operationId: create-rightoftreatment
+      parameters:
+      - description: Rightoftreatment entity
+        in: body
+        name: rightoftreatment
+        required: true
+        schema:
+          $ref: '#/definitions/ent.Rightoftreatment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Rightoftreatment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Create rightoftreatment
+  /rightoftreatments/{id}:
+    get:
+      description: get rightoftreatment by ID
+      operationId: get-rightoftreatment
+      parameters:
+      - description: Rightoftreatment ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Rightoftreatment'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Get a rightoftreatment entity by ID
+  /systemmember/{id}:
+    delete:
+      description: get systemmember by ID
+      operationId: delete-systemmember
+      parameters:
+      - description: Systemmember ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Delete a systemmember entity by ID
+  /systemmembers:
+    get:
+      description: list systemmember entities
+      operationId: list-systemmember
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/ent.Systemmember'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: List systemmember entities
+    post:
+      consumes:
+      - application/json
+      description: Create systemmember
+      operationId: create-systemmember
+      parameters:
+      - description: Systemmember entity
+        in: body
+        name: systemmember
+        required: true
+        schema:
+          $ref: '#/definitions/ent.Systemmember'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Systemmember'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Create systemmember
+  /systemmembers/{id}:
+    get:
+      description: get systemmember by ID
+      operationId: get-systemmember
+      parameters:
+      - description: Systemmember ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/ent.Systemmember'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/gin.H'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/gin.H'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Get a systemmember entity by ID
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+  BasicAuth:
+    type: basic
+  OAuth2AccessCode:
+    authorizationUrl: https://example.com/oauth/authorize
+    flow: accessCode
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+    tokenUrl: https://example.com/oauth/token
+    type: oauth2
+  OAuth2Application:
+    flow: application
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+      write: ' Grants write access'
+    tokenUrl: https://example.com/oauth/token
+    type: oauth2
+  OAuth2Implicit:
+    authorizationUrl: https://example.com/oauth/authorize
+    flow: implicit
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+      write: ' Grants write access'
+    type: oauth2
+  OAuth2Password:
+    flow: password
+    scopes:
+      admin: ' Grants read and write access to administrative information'
+      read: ' Grants read access'
+      write: ' Grants write access'
+    tokenUrl: https://example.com/oauth/token
+    type: oauth2
+swagger: "2.0"

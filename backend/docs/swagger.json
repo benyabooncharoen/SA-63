@@ -1,0 +1,911 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server for SUT SE 2563",
+        "title": "SUT SA Example API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1",
+    "paths": {
+        "/gender/{id}": {
+            "delete": {
+                "description": "get gender by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete a gender entity by ID",
+                "operationId": "delete-gender",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Gender ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/genders": {
+            "get": {
+                "description": "list gender entities",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List gender entities",
+                "operationId": "list-gender",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Gender"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create gender",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create gender",
+                "operationId": "create-gender",
+                "parameters": [
+                    {
+                        "description": "Gender entity",
+                        "name": "gender",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ent.Gender"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Gender"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/genders/{id}": {
+            "get": {
+                "description": "get gender by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a gender entity by ID",
+                "operationId": "get-gender",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Gender ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Gender"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/patients": {
+            "get": {
+                "description": "list patient entities",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List patient entities",
+                "operationId": "list-patient",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Patient"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create patient",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create patient",
+                "operationId": "create-patient",
+                "parameters": [
+                    {
+                        "description": "Patient entity",
+                        "name": "patient",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/controllers.Patient"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controllers.Patient"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/patients/{id}": {
+            "delete": {
+                "description": "get patient by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete a patient entity by ID",
+                "operationId": "delete-patient",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Patient ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/rightoftreatment/{id}": {
+            "delete": {
+                "description": "get rightoftreatment by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete a rightoftreatment entity by ID",
+                "operationId": "delete-rightoftreatment",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Rightoftreatment ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/rightoftreatments": {
+            "get": {
+                "description": "list rightoftreatment entities",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List rightoftreatment entities",
+                "operationId": "list-rightoftreatment",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Rightoftreatment"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create rightoftreatment",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create rightoftreatment",
+                "operationId": "create-rightoftreatment",
+                "parameters": [
+                    {
+                        "description": "Rightoftreatment entity",
+                        "name": "rightoftreatment",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ent.Rightoftreatment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Rightoftreatment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/rightoftreatments/{id}": {
+            "get": {
+                "description": "get rightoftreatment by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a rightoftreatment entity by ID",
+                "operationId": "get-rightoftreatment",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Rightoftreatment ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Rightoftreatment"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/systemmember/{id}": {
+            "delete": {
+                "description": "get systemmember by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete a systemmember entity by ID",
+                "operationId": "delete-systemmember",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Systemmember ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/systemmembers": {
+            "get": {
+                "description": "list systemmember entities",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List systemmember entities",
+                "operationId": "list-systemmember",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ent.Systemmember"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create systemmember",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create systemmember",
+                "operationId": "create-systemmember",
+                "parameters": [
+                    {
+                        "description": "Systemmember entity",
+                        "name": "systemmember",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ent.Systemmember"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Systemmember"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/systemmembers/{id}": {
+            "get": {
+                "description": "get systemmember by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a systemmember entity by ID",
+                "operationId": "get-systemmember",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Systemmember ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ent.Systemmember"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "controllers.Patient": {
+            "type": "object",
+            "properties": {
+                "gender": {
+                    "type": "integer"
+                },
+                "hn": {
+                    "type": "string"
+                },
+                "patientName": {
+                    "type": "string"
+                },
+                "rightoftreatment": {
+                    "type": "integer"
+                },
+                "systemmember": {
+                    "type": "integer"
+                }
+            }
+        },
+        "ent.Gender": {
+            "type": "object",
+            "properties": {
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the GenderQuery when eager-loading is set.",
+                    "type": "object",
+                    "$ref": "#/definitions/ent.GenderEdges"
+                },
+                "genderName": {
+                    "description": "GenderName holds the value of the \"genderName\" field.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                }
+            }
+        },
+        "ent.GenderEdges": {
+            "type": "object",
+            "properties": {
+                "patients": {
+                    "description": "Patients holds the value of the patients edge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ent.Patient"
+                    }
+                }
+            }
+        },
+        "ent.Patient": {
+            "type": "object",
+            "properties": {
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the PatientQuery when eager-loading is set.",
+                    "type": "object",
+                    "$ref": "#/definitions/ent.PatientEdges"
+                },
+                "gender": {
+                    "type": "integer"
+                },
+                "hn": {
+                    "description": "Hn holds the value of the \"hn\" field.",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "patientName": {
+                    "description": "PatientName holds the value of the \"patientName\" field.",
+                    "type": "string"
+                },
+                "rightoftreatment": {
+                    "type": "integer"
+                },
+                "systemmember": {
+                    "type": "integer"
+                }
+            }
+        },
+        "ent.PatientEdges": {
+            "type": "object",
+            "properties": {
+                "gender": {
+                    "description": "Gender holds the value of the gender edge.",
+                    "type": "object",
+                    "$ref": "#/definitions/ent.Gender"
+                },
+                "rightoftreatment": {
+                    "description": "Rightoftreatment holds the value of the rightoftreatment edge.",
+                    "type": "object",
+                    "$ref": "#/definitions/ent.Rightoftreatment"
+                },
+                "systemmember": {
+                    "description": "Systemmember holds the value of the systemmember edge.",
+                    "type": "object",
+                    "$ref": "#/definitions/ent.Systemmember"
+                }
+            }
+        },
+        "ent.Rightoftreatment": {
+            "type": "object",
+            "properties": {
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the RightoftreatmentQuery when eager-loading is set.",
+                    "type": "object",
+                    "$ref": "#/definitions/ent.RightoftreatmentEdges"
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "rightoftreatmentName": {
+                    "description": "RightoftreatmentName holds the value of the \"rightoftreatmentName\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.RightoftreatmentEdges": {
+            "type": "object",
+            "properties": {
+                "patients": {
+                    "description": "Patients holds the value of the patients edge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ent.Patient"
+                    }
+                }
+            }
+        },
+        "ent.Systemmember": {
+            "type": "object",
+            "properties": {
+                "Password": {
+                    "description": "Password holds the value of the \"Password\" field.",
+                    "type": "string"
+                },
+                "edges": {
+                    "description": "Edges holds the relations/edges for other nodes in the graph.\nThe values are being populated by the SystemmemberQuery when eager-loading is set.",
+                    "type": "object",
+                    "$ref": "#/definitions/ent.SystemmemberEdges"
+                },
+                "id": {
+                    "description": "ID of the ent.",
+                    "type": "integer"
+                },
+                "systemmemberName": {
+                    "description": "SystemmemberName holds the value of the \"systemmemberName\" field.",
+                    "type": "string"
+                }
+            }
+        },
+        "ent.SystemmemberEdges": {
+            "type": "object",
+            "properties": {
+                "patients": {
+                    "description": "Patients holds the value of the patients edge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ent.Patient"
+                    }
+                }
+            }
+        },
+        "gin.H": {
+            "type": "object",
+            "additionalProperties": true
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        },
+        "BasicAuth": {
+            "type": "basic"
+        },
+        "OAuth2AccessCode": {
+            "type": "oauth2",
+            "flow": "accessCode",
+            "authorizationUrl": "https://example.com/oauth/authorize",
+            "tokenUrl": "https://example.com/oauth/token",
+            "scopes": {
+                "admin": " Grants read and write access to administrative information"
+            }
+        },
+        "OAuth2Application": {
+            "type": "oauth2",
+            "flow": "application",
+            "tokenUrl": "https://example.com/oauth/token",
+            "scopes": {
+                "admin": " Grants read and write access to administrative information",
+                "write": " Grants write access"
+            }
+        },
+        "OAuth2Implicit": {
+            "type": "oauth2",
+            "flow": "implicit",
+            "authorizationUrl": "https://example.com/oauth/authorize",
+            "scopes": {
+                "admin": " Grants read and write access to administrative information",
+                "write": " Grants write access"
+            }
+        },
+        "OAuth2Password": {
+            "type": "oauth2",
+            "flow": "password",
+            "tokenUrl": "https://example.com/oauth/token",
+            "scopes": {
+                "admin": " Grants read and write access to administrative information",
+                "read": " Grants read access",
+                "write": " Grants write access"
+            }
+        }
+    }
+}
